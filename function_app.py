@@ -27,7 +27,7 @@ def processPrompt(req: func.HttpRequest) -> func.HttpResponse:
 
      if prompt:
         result = generateSQL(prompt)
-        logging.info('Return the result')
+        logging.info('Returning the result')
         return func.HttpResponse(result, status_code=200)
      else:
         return func.HttpResponse(
@@ -60,15 +60,15 @@ def generateSQL(query):
 
         # Define the OpenAI prompt
         prompt = f"# Here are the columns in the database:\n# {result_set_json}\n### Generate a single T-SQL query for the following question using the information about the database: {query}\n\nSELECT"
-        logging.info(prompt)
+        logging.info(f"prompt : {prompt}")
 
         # Setting API Key and API endpoint for OpenAI
-        openai.api_type = "azure"
-        openai.api_base = os.environ["OPENAI_URL"]
-        openai.api_version = "2022-12-01"
-        openai.api_key = os.environ["OPENAI_API_KEY"]
-
-        deployment_name = os.environ["OPENAI_MODEL"]
+        openai.api_type    = os.environ["OPENAI_TYPE"]
+        openai.api_base    = os.environ["OPENAI_URL"]
+        openai.api_version = os.environ["OPENAI_VERSION"]
+        openai.api_key     = os.environ["OPENAI_API_KEY"]
+        deployment_name    = os.environ["OPENAI_MODEL"]
+        #gpt-35-turbo or 
 
         logging.info('Sending an SQL generation request to OpenAI')
         response = openai.Completion.create(
