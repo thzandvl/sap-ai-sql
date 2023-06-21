@@ -3,10 +3,10 @@ import logging, os
 import openai, json, pyodbc
 
 # SQL info
-server = os.environ['SQL_URL']
-database = os.environ['SQL_DB']
-username = os.environ['SQL_USER']
-pwd = os.environ['SQL_PASS']
+server      = os.environ['SQL_URL']
+database    = os.environ['SQL_DB']
+username    = os.environ['SQL_USER']
+pwd         = os.environ['SQL_PASS']
 
 app = func.FunctionApp()
 
