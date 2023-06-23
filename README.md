@@ -8,7 +8,7 @@
 Converting text to SQL using OpenAI's GPT-3.5 Turbo and Azure Synapse.
 
 
-One of the use-cases of ChatGPT is Natural Language Processing. As in my work I am looking for use-cases how we can integrate Azure Services with SAP workloads one of the easiest ways is by simply converting text into SQL, TSQL in this specific case as I will be integrating with Azure Synapse.
+One of the use-cases of ChatGPT is Natural Language Processing. As in my work I am looking for use-cases how we can integrate Azure Services with SAP workloads, one of the easiest ways is by simply converting text into SQL. TSQL in this specific case as I will be integrating with Azure Synapse.
 
 
 ### Prerequisites
