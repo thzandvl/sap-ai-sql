@@ -1,4 +1,4 @@
 POST http://localhost:7071/api/prompt
 content-type: application/json
 
-{ "prompt": "What is the average difference between payment date and billing document data?" }
+{ "prompt": "What are the average monthly payments over the year 2019?" }

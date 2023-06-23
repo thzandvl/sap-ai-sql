@@ -40,7 +40,7 @@ def processPrompt(req: func.HttpRequest) -> func.HttpResponse:
 def generateSQL(query):
     
     # Connect to your database using ODBC
-    conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + server +';DATABASE=' + database + ';UID=' + username +';PWD=' + pwd + ';')
+    conn = pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server};SERVER=' + server +';DATABASE=' + database + ';UID=' + username +';PWD=' + pwd + ';')
 
     try:
         # Execute the query to retrieve the column information
@@ -68,7 +68,6 @@ def generateSQL(query):
         openai.api_version = os.environ["OPENAI_VERSION"]
         openai.api_key     = os.environ["OPENAI_API_KEY"]
         deployment_name    = os.environ["OPENAI_MODEL"]
-        #gpt-35-turbo or 
 
         logging.info('Sending an SQL generation request to OpenAI')
         response = openai.Completion.create(
