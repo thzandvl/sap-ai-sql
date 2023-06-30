@@ -2,7 +2,7 @@
 
 ## Use cases
 * Use case #1: Text to SQL
-* [Use case #2: ChatGPT + Enterprise data with Azure OpenAI and Cognitive Search](https://github.com/Azure-Samples/azure-search-openai-demo)
+* [Use case #2: Use your own data with Azure OpenAI service](https://github.com/thzandvl/sap-ai-docs)
 
 ## Use-case #1: Text to SQL
 Converting text to SQL using OpenAI's GPT-3.5 Turbo and Azure Synapse.
