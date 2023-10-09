@@ -40,7 +40,7 @@ def processPrompt(req: func.HttpRequest) -> func.HttpResponse:
 def generateSQL(query):
     
     # Connect to your database using ODBC
-    conn = pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server};SERVER=' + server +';DATABASE=' + database + ';UID=' + username +';PWD=' + pwd + ';')
+    conn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + server +';DATABASE=' + database + ';UID=' + username +';PWD=' + pwd + ';')
 
     try:
         # Execute the query to retrieve the column information
@@ -60,7 +60,11 @@ def generateSQL(query):
 
         # Define the OpenAI prompt
         prompt = f"# Here are the columns in the database:\n# {result_set_json}\n### Generate a single T-SQL query for the following question using the information about the database: {query}\n\nSELECT"
-        logging.info(f"prompt : {prompt}")
+        msgs = [
+            {"role": "system", "content": 'You are an AI that converts natural language to SQL code'},
+            {"role": "user", "content": prompt}
+        ]
+        logging.info(f"messages : {msgs}")
 
         # Setting API Key and API endpoint for OpenAI
         openai.api_type    = os.environ["OPENAI_TYPE"]
@@ -70,9 +74,9 @@ def generateSQL(query):
         deployment_name    = os.environ["OPENAI_MODEL"]
 
         logging.info('Sending an SQL generation request to OpenAI')
-        response = openai.Completion.create(
+        response = openai.ChatCompletion.create(
             engine=deployment_name,
-            prompt=prompt,
+            messages=msgs,
             temperature=0,
             max_tokens=200,
             top_p=1,
@@ -84,7 +88,7 @@ def generateSQL(query):
         logging.info(json.dumps(response))
 
         # Retrieve the generated SQL Query
-        sqlquery = f'SELECT{response.choices[0].text}'
+        sqlquery = f'SELECT {response.choices[0].message.content}'
         sqlquery = sqlquery.replace("\n", " ")
         logging.info(f'SQLQuery: {sqlquery}')
 

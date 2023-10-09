@@ -1,4 +1,5 @@
+#POST https://sap-ai-sql.azurewebsites.net/api/prompt
 POST http://localhost:7071/api/prompt
 content-type: application/json
 
-{ "prompt": "What are the average monthly payments over the year 2019?" }
+{ "prompt": "What is the monthly average of the payments over the year 2019?" }
